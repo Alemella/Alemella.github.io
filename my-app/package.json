@@ -1,5 +1,6 @@
 {
   "name": "my-app",
+  "homepage": "https://alemella.github.io",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -24,4 +25,5 @@
     "globals": "^16.5.0",
     "vite": "^7.3.1"
   }
+  
 }
