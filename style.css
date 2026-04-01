@@ -1179,6 +1179,16 @@ body,
     object-fit: contain;
 }
 
+.tech-card--react img {
+    width: 56px;
+    height: 56px;
+}
+
+.tech-card--php img {
+    width: 56px;
+    height: 56px;
+}
+
 .tech-card span {
     color: #f2f6ff;
     font-size: 0.8rem;
