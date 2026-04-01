@@ -7,7 +7,7 @@
 
     <meta name="description" content="Portafolio profesional de desarrollo web. Experiencia en frontend, backend y tecnologías modernas.">
 
-    <title>Portafolio | Alura Latam</title>
+    <title>Portafolio | Alejandro</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -21,159 +21,145 @@
 
     <!-- Header / Navegación -->
     <header class="cabecera">
-        <div class="cabecera__contenedor">
-            <img class="cabecera__logo" src="assets/vector.png" alt="Logo personal de Alura Latam">
-            <h1 class="cabecera__titulo">Alura Latam</h1>
-
-            <nav class="navegacion" aria-label="Navegación principal">
-                <ul class="navegacion__lista">
-                    <li><a href="#sobre-mi">Sobre mí</a></li>
-                    <li><a href="#habilidades">Habilidades</a></li>
-                    <li><a href="#aficiones">Aficiones</a></li>
-                    <li><a href="#formacion">Formación</a></li>
-                    <li><a href="#proyectos">Experiencia</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-            </nav>
-        </div>
+                <nav class="navbar">
+    <div class="navbar__logo">
+        <span>Alejandro Mella</span>
+    </div>
+    <ul class="navbar__links">
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#tecnologias">Tecnologías</a></li>
+        <li><a href="#aficiones">Aficiones</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <button id="toggle-dark" class="theme-toggle" aria-label="Cambiar tema">🌙</button>
+</nav>
     </header>
 
     <main>
 
         <!-- Presentación -->
-        <section class="presentacion">
-            <img class="presentacion__foto" src="assets/profile.png" alt="Fotografía de perfil de Alura Latam">
+        <!-- <section class="presentacion">
 
-            <div class="presentacion__contenedor">
-                <h2 class="presentacion__titulo">
-                    Desarrollador Web enfocado en soluciones modernas
-                </h2>
+    <div class="presentacion__contenedor">
+        <h2 class="presentacion__titulo">
+            Alejandro Sebastian Mella Badaracco
+        </h2>
+        <p class="presentacion__subtitulo">
+            Técnico de Nivel Superior Analista Programador<br>
+            Desarrollador web full stack, especializado en front-end.<br>
+            Experiencia en sistemas de gestión de compras, ventas y operaciones para servicetas y talleres.
+        </p>
+        <ul class="redes">
+            <li><a href="https://github.com/tuusuario" target="_blank" rel="noopener">GitHub <img src="assets/arrow.png" alt=""></a></li>
+            <li><a href="https://linkedin.com/in/tuusuario" target="_blank" rel="noopener">LinkedIn <img src="assets/arrow.png" alt=""></a></li>
+            <li><a href="assets/cv.pdf" target="_blank" rel="noopener">Currículum <img src="assets/arrow.png" alt=""></a></li>
+        </ul>
+    </div>
+</section> -->
 
-                <p class="presentacion__subtitulo">
-                    Desarrollo aplicaciones web utilizando tecnologías modernas. Actualmente participo en el programa Oracle ONE en Alura Latam.
-                </p>
+<!-- Sobre mí + Tecnologías -->
+<section class="sobre-tech">
+    <article class="sobre-tech__about" id="sobre-mi">
+        <h2>Sobre mí</h2>
+        <p>
+            Me he desempeñado en el desarrollo de sistemas de gestión de compras, ventas y operaciones para servicetas y talleres.
+            Soy desarrollador web full stack, con foco en front-end.
+        </p>
+        <p>
+            Me motiva combinar creatividad, lógica y tecnología para resolver problemas.
+        </p>
+        <p>
+            <!-- texto para informar que en mis tiempos libres juego videojuegos --> 
+            En mis tiempos libres, disfruto jugando videojuegos :D
+        </p>
+    </article>
 
-                <ul class="redes">
-                    <li><a href="#" target="_blank" rel="noopener">GitHub <img src="assets/arrow.png" alt=""></a></li>
-                    <li><a href="#" target="_blank" rel="noopener">LinkedIn <img src="assets/arrow.png" alt=""></a></li>
-                    <li><a href="#" target="_blank" rel="noopener">Instagram <img src="assets/arrow.png" alt=""></a></li>
-                    <li><a href="#" target="_blank" rel="noopener">Currículum <img src="assets/arrow.png" alt=""></a></li>
-                </ul>
+    <article class="sobre-tech__stack" id="tecnologias">
+        <h2>Tecnologías</h2>
+        <div class="tech-grid">
+            <div class="tech-card"><img src="assets/HTML.png" alt="HTML"><span>HTML</span></div>
+            <div class="tech-card"><img src="assets/CSS.png" alt="CSS"><span>CSS</span></div>
+            <div class="tech-card"><img src="assets/javascript.png" alt="JavaScript"><span>JavaScript</span></div>
+            <div class="tech-card"><img src="assets/react.png" alt="React"><span>React</span></div>
+            <div class="tech-card"><img src="assets/vue.png" alt="Vue"><span>Vue</span></div>
+            <div class="tech-card"><img src="assets/php-logo.svg.png" alt="PHP"><span>PHP</span></div>
+            <!-- <div class="tech-card"><img src="assets/dbeaver.png" alt="DBeaver"><span>DBeaver</span></div>
+            <div class="tech-card"><img src="assets/postman.png" alt="Postman"><span>Postman</span></div>
+            <div class="tech-card"><img src="assets/Github.png" alt="GitHub"><span>GitHub</span></div>
+            <div class="tech-card"><img src="assets/npm.png" alt="npm"><span>npm</span></div> -->
+        </div>
+    </article>
+</section>
+
+
+<!-- Formación -->
+<!-- <section class="formacion" id="formacion">
+    <h2>Formación académica</h2>
+    <ul class="formacion__lista">
+       
+            <div>
+                <h3>IP Santo Tomas - Analista Programador</h3>
+                <p>Marzo 2022 - Marzo 2025</p>
             </div>
-        </section>
+        
+        
+            <div>
+                <h3>Instituto Claret</h3>
+                <p>Marzo 2013 - Noviembre 2017<br>
+                Educación media C.H. / Técnica</p>
+            </div>
+        
+    </ul>
+</section> -->
 
-        <!-- Sobre mí -->
-        <section class="sobre-mi" id="sobre-mi">
-            <h2>Sobre mí</h2>
+<!-- Experiencia -->
+<!-- <section class="proyectos" id="proyectos">
+    <h2>Experiencia laboral</h2>
+        <h3>Soporte informático</h3>
+        <p>2019 - Mayo 2022</p>
+        <h3>Desarrollador web full stack en Helpcom</h3>
+        <p>Julio 2024 - Marzo 2026</p>
+</section> -->
 
-            <p>
-                Soy desarrollador web con interés en la creación de interfaces intuitivas y soluciones escalables. Me enfoco en escribir código limpio, mantenible y orientado a buenas prácticas.
-            </p>
 
-            <p>
-                Tengo experiencia trabajando con tecnologías frontend y backend, y disfruto aprender constantemente nuevas herramientas del ecosistema web.
-            </p>
 
-            <img class="sobre-mi__firma" src="assets/signature.png" alt="Firma personal">
-        </section>
+<!-- Idiomas -->
+<!-- <section class="habilidades" id="idiomas">
+    <h2>Idiomas</h2>
+    <ul class="habilidades__lista">
+        <li>Español: Nativo</li>
+        <li>Inglés: Nivel medio</li>
+    </ul>
+</section> -->
 
-        <!-- Habilidades -->
-        <section class="habilidades" id="habilidades">
-            <h2>Habilidades técnicas</h2>
+<!-- <section class="habilidades" id="habilidades">
+    <h2>Habilidades técnicas</h2>
+    <ul class="habilidades__lista">
+        <li>Proactivo</li>
+        <li>Organizado</li>
+        <li>Creativo</li>
+        <li>Colaborativo</li>
+    </ul>
+</section> -->
 
-            <ul class="habilidades__lista">
-                <li><img src="assets/html.png" alt="HTML5"><span>HTML5</span></li>
-                <li><img src="assets/css_icon.png" alt="CSS3"><span>CSS3</span></li>
-                <li><img src="assets/js_icon.png" alt="JavaScript"><span>JavaScript</span></li>
-                <li><img src="assets/react_icon.png" alt="React"><span>React</span></li>
-                <li><img src="assets/nodejs_icon.png" alt="Node.js"><span>Node.js</span></li>
-                <li><img src="assets/php_icon.png" alt="PHP"><span>PHP</span></li>
-            </ul>
-        </section>
+<section class="aficiones" id="aficiones">
+    <h2>Aficiones</h2>
+    <ul class="aficiones__lista">
+        <li>Diseño de interfaces</li>
+        <li>Videojuegos</li>
+        <li>Resolución de problemas</li>
+        <li>Automatización de procesos</li>
+    </ul>
+</section>
 
-        <!-- Aficiones -->
-        <section class="aficiones" id="aficiones">
-            <h2>Aficiones</h2>
-
-            <ul class="aficiones__lista">
-                <li><img src="assets/skate_icon.png" alt=""><span>Patinaje</span></li>
-                <li><img src="assets/guitar_icon.png" alt=""><span>Tocar bajo</span></li>
-                <li><img src="assets/headphones_icon.png" alt=""><span>Música</span></li>
-                <li><img src="assets/tv_icon.png" alt=""><span>Series</span></li>
-                <li><img src="assets/forkspoon_icon.png" alt=""><span>Cocina</span></li>
-                <li><img src="assets/camera_icon.png" alt=""><span>Fotografía</span></li>
-            </ul>
-        </section>
-
-        <!-- Formación -->
-        <section class="formacion" id="formacion">
-            <h2>Formación académica</h2>
-
-            <ul class="formacion__lista">
-                <li>
-                    <img src="assets/ufpr_logo.png" alt="UFPR">
-                    <div>
-                        <h3>Análisis de datos</h3>
-                        <p>2018 · UFPR</p>
-                    </div>
-                </li>
-
-                <li>
-                    <img src="assets/alura_logo.png" alt="Alura">
-                    <div>
-                        <h3>UX Design</h3>
-                        <p>2019 · Alura</p>
-                    </div>
-                </li>
-
-                <li>
-                    <img src="assets/ufrj_logo.png" alt="UFRJ">
-                    <div>
-                        <h3>Posgrado en Diseño</h3>
-                        <p>En curso · UFRJ</p>
-                    </div>
-                </li>
-            </ul>
-        </section>
-
-        <!-- Experiencia -->
-        <section class="proyectos" id="proyectos">
-            <h2>Experiencia profesional</h2>
-
-            <article class="proyectos__contenedor">
-                <h3>Proyecto Web Corporativo</h3>
-                <p>Desarrollo de aplicación web con enfoque en usabilidad y rendimiento.</p>
-            </article>
-
-            <article class="proyectos__contenedor">
-                <h3>Sistema de Gestión</h3>
-                <p>Implementación de funcionalidades CRUD y consumo de APIs.</p>
-            </article>
-        </section>
-
-        <!-- Contacto -->
-        <section class="contacto" id="contacto">
-            <h2>Contacto</h2>
-
-            <form class="contacto__formulario">
-                <label>
-                    Nombre
-                    <input type="text" required>
-                </label>
-
-                <label>
-                    Correo electrónico
-                    <input type="email" required>
-                </label>
-
-                <label>
-                    Mensaje
-                    <textarea rows="4" required></textarea>
-                </label>
-
-                <button type="submit">Enviar mensaje</button>
-            </form>
-        </section>
+<!-- Contacto -->
+<section class="contacto" id="contacto">
+    <h2>Contacto</h2>
+    <ul>
+        <li>Teléfono: +569-50550305</li>
+        <li>Email: alejandros.mella5@gmail.com</li>
+    </ul>
+</section>
 
     </main>
 

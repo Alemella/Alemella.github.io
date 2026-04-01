@@ -1,1 +1,21 @@
-//La validación del formulário con javascript es considerada un desafío extra, no es obligatório realizar esta validación para realizar su entrega
+// ...existing code...
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Modo oscuro
+    const btnDark = document.getElementById('toggle-dark');
+
+    function actualizarEstiloBotonTema() {
+        const enModoOscuro = document.body.classList.contains('dark-mode');
+        btnDark.textContent = enModoOscuro ? '☀️' : '🌙';
+    }
+
+    if (btnDark) {
+        actualizarEstiloBotonTema();
+        btnDark.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            actualizarEstiloBotonTema();
+        });
+    }
+});
+
+// ...existing code...
