@@ -32,6 +32,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 6.5rem;
 }
 
 body {
@@ -196,6 +197,131 @@ a {
 }
 
 /* ==========================================================================
+   Proyectos
+   ========================================================================== */
+
+.proyectos {
+    position: relative;
+    max-width: 100vw;
+    padding: 5vw 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.proyectos__galeria {
+    position: relative;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 600px;
+}
+
+.proyectos__btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 1.5rem;
+    opacity: 0.7;
+    font-size: 2.5rem;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.proyectos__btn--prev {
+    left: -70px;
+}
+
+.proyectos__btn--next {
+    right: -70px;
+}
+
+.proyectos__btn:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.15);
+}
+
+.proyectos__contenedor {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5vw;
+    align-items: center;
+    justify-content: center;
+}
+
+.proyectos__item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.proyectos__video {
+    width: 100%;
+    max-width: 1200px;
+    min-width: 500px;
+    min-height: 400px;
+    max-height: 90vh;
+    aspect-ratio: 16/9;
+    border-radius: 2.5rem;
+    box-shadow: 0 32px 100px rgba(0,0,0,0.8);
+}
+
+.proyectos__info {
+    font-size: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.proyectos__info h3 {
+    font-size: 2.5rem;
+}
+
+@media (max-width: 1200px) {
+  .proyectos__galeria {
+    min-height: 350px;
+    max-width: 98vw;
+  }
+  .proyectos__btn--prev {
+    left: -30px;
+  }
+  .proyectos__btn--next {
+    right: -30px;
+  }
+  .proyectos__contenedor {
+    gap: 2vw;
+  }
+  .proyectos__video {
+    max-width: 100vw;
+    min-width: unset;
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 900px) {
+  .proyectos__galeria {
+    flex-direction: column;
+    min-height: unset;
+  }
+  .proyectos__contenedor {
+    grid-template-columns: 1fr;
+    gap: 2vw;
+  }
+  .proyectos__btn {
+    display: none;
+  }
+}
+
+/* ==========================================================================
    Contacto
    ========================================================================== */
 
@@ -203,13 +329,25 @@ a {
     max-width: var(--max-width);
     margin: 0 auto;
     padding: var(--spacing-lg) var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.contacto__intro {
+    max-width: 68ch;
+    margin: 0 0 1.5rem;
+    color: var(--text-muted);
 }
 
 .contacto__formulario {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
-    max-width: 500px;
+    width: min(100%, 620px);
+    max-width: 620px;
+    text-align: left;
 }
 
 .contacto__formulario input,
@@ -221,6 +359,12 @@ a {
 .contacto__formulario button {
     padding: var(--spacing-sm);
     cursor: pointer;
+}
+
+.contacto__datos {
+    width: min(100%, 620px);
+    margin-top: 1.5rem;
+    text-align: left;
 }
 
 /* ==========================================================================
@@ -252,16 +396,7 @@ body.dark-mode .footer,
 body.dark-mode .sobre-mi p {
     color: #bdbdbd;
 }
-body.dark-mode .habilidades__lista li,
-body.dark-mode .aficiones__lista li {
-    background-color: #222;
-    color: #f5f5f5;
-}
-body.dark-mode .formacion__lista li,
-body.dark-mode .proyectos__contenedor {
-    background-color: #222;
-    color: #f5f5f5;
-}
+
 
 .carrusel-tecnologias {
     max-width: 1200px;
@@ -534,11 +669,15 @@ h3,
 .cabecera {
     background: transparent;
     padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1200;
+    padding-top: 0.6rem;
 }
 
 .navbar {
-    max-width: 1120px;
-    margin: 1rem auto 0;
+    max-width: calc(1120px - 2rem);
+    margin: 0 auto;
     padding: 0.85rem 1.1rem;
     border: 1px solid var(--surface-border);
     border-radius: 14px;
@@ -578,6 +717,10 @@ main {
     max-width: 1120px;
     margin: 0 auto;
     padding: 0 1rem 2.5rem;
+}
+
+main [id] {
+    scroll-margin-top: 6.5rem;
 }
 
 .presentacion,
@@ -1009,10 +1152,15 @@ body,
     box-shadow: var(--shadow-soft);
 }
 
+.proyectos {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
 .presentacion::before,
 .sobre-mi::before,
 .formacion::before,
-.proyectos::before,
 .habilidades::before,
 .aficiones::before,
 .contacto::before {
@@ -1027,6 +1175,10 @@ body,
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
+}
+
+.proyectos::before {
+    display: none;
 }
 
 .presentacion__foto {
@@ -1382,4 +1534,200 @@ body:not(.dark-mode) {
 .contacto__formulario button {
     border: 1px solid color-mix(in srgb, #ffffff 20%, var(--edge-outline));
     box-shadow: 0 6px 20px color-mix(in srgb, var(--edge-outline) 30%, transparent);
+}
+
+/* ==========================================================================
+   Switch modo oscuro (estilo pastilla)
+   ========================================================================== */
+
+.theme-toggle {
+    position: relative;
+    width: 56px;
+    height: 24px;
+    border-radius: 999px;
+    border: 2px solid rgba(220, 226, 238, 0.72);
+    background: linear-gradient(180deg, #c8ccd6 0%, #aeb5c1 100%);
+    cursor: pointer;
+    padding: 0;
+    font-size: 0;
+    margin-left: 1rem;
+    transition: background 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.14), 0 10px 22px rgba(18, 25, 38, 0.18);
+}
+
+.theme-toggle::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 28%, #292731 0%, #1b1a22 65%, #121119 100%);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.32);
+    z-index: 2;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-toggle__icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.theme-toggle__icon svg {
+    width: 12px;
+    height: 12px;
+    display: block;
+}
+
+.theme-toggle__icon--moon {
+    left: 5px;
+}
+
+.theme-toggle__icon--sun {
+    right: 5px;
+    filter: drop-shadow(0 0 2px rgba(255, 239, 160, 0.45));
+}
+
+body.dark-mode .theme-toggle {
+    border-color: #42506e;
+    background: linear-gradient(180deg, #30384b 0%, #222937 100%);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.35), 0 10px 24px rgba(0, 0, 0, 0.38);
+}
+
+body.dark-mode .theme-toggle::before {
+    transform: translateX(32px);
+    background: radial-gradient(circle at 30% 28%, #f8fbff 0%, #dbe6ff 70%, #c0d3ff 100%);
+    box-shadow: 0 0 14px rgba(166, 196, 255, 0.5), 0 8px 18px rgba(5, 12, 26, 0.45);
+}
+
+body.dark-mode .theme-toggle__icon--moon {
+    color: #d8e1ff;
+}
+
+body.dark-mode .theme-toggle__icon--sun {
+    color: #ffe38a;
+}
+
+.theme-toggle:hover {
+    transform: none;
+    box-shadow: inset 0 2px 7px rgba(0, 0, 0, 0.22), 0 10px 24px rgba(16, 26, 41, 0.24);
+}
+
+@media (max-width: 768px) {
+    .theme-toggle {
+        margin-left: 0;
+        margin-top: 0.35rem;
+    }
+}
+
+/* ==========================================================================
+   Override final - Proyectos como referencia
+   ========================================================================== */
+
+.proyectos {
+    position: relative;
+    max-width: min(1360px, calc(100vw - 2rem));
+    margin: 1.25rem auto;
+    padding: 1.4rem 1rem 1.8rem;
+    overflow: visible;
+    background: color-mix(in srgb, var(--surface) 88%, transparent) !important;
+    border: 1.5px solid var(--edge-outline) !important;
+    border-radius: 18px;
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--edge-outline) 18%, transparent), 0 8px 24px var(--edge-glow) !important;
+}
+
+.proyectos::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    padding: 1.5px;
+    background: linear-gradient(125deg, rgba(56, 157, 255, 0.7), rgba(174, 123, 255, 0.38), rgba(255, 90, 115, 0.6));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 1;
+}
+
+.proyectos h2 {
+    text-align: center;
+    margin: 0 0 1rem;
+}
+
+.proyectos__galeria {
+    position: relative;
+    width: 100%;
+    min-height: 510px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.proyectos__contenedor {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+.proyectos__item {
+    width: min(1080px, 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.proyectos__video {
+    width: 100%;
+    max-height: 58vh;
+    border-radius: 18px;
+    object-fit: cover;
+}
+
+.proyectos__descripcion-breve {
+    margin: 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    max-width: 68ch;
+}
+
+.proyectos__btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    opacity: 0.9;
+}
+
+.proyectos__btn--prev {
+    left: -74px;
+}
+
+.proyectos__btn--next {
+    right: -74px;
+}
+
+@media (max-width: 1100px) {
+    .proyectos__btn--prev {
+        left: -22px;
+    }
+
+    .proyectos__btn--next {
+        right: -22px;
+    }
+}
+
+@media (max-width: 900px) {
+    .proyectos__btn {
+        display: none;
+    }
 }
