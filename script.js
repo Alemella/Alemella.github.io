@@ -52,6 +52,65 @@ document.addEventListener('DOMContentLoaded', function() {
     if (proyectosItems.length > 0) {
         mostrarProyecto(0);
     }
+
+    // Envio de formulario de contacto
+    const formulariosContacto = document.querySelectorAll('.contacto__formulario[data-contact-form]');
+
+    formulariosContacto.forEach((formulario) => {
+        formulario.addEventListener('submit', async function(evento) {
+            evento.preventDefault();
+
+            const estado = formulario.querySelector('.contacto__estado');
+            const botonEnviar = formulario.querySelector('button[type="submit"]');
+            const endpointAjax = 'https://formsubmit.co/ajax/alejandros.mella5@gmail.com';
+
+            if (estado) {
+                estado.textContent = 'Enviando mensaje...';
+                estado.className = 'contacto__estado';
+            }
+
+            if (botonEnviar) {
+                botonEnviar.disabled = true;
+            }
+
+            try {
+                const respuesta = await fetch(endpointAjax, {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json'
+                    },
+                    body: new FormData(formulario)
+                });
+
+                if (!respuesta.ok) {
+                    throw new Error('No fue posible completar el envio por AJAX.');
+                }
+
+                const datos = await respuesta.json();
+                const exito = datos.success === true || datos.success === 'true';
+
+                if (!exito) {
+                    throw new Error('El servicio de correo no confirmo el envio.');
+                }
+
+                formulario.reset();
+
+                if (estado) {
+                    estado.textContent = 'Mensaje enviado correctamente. Te respondere pronto.';
+                    estado.className = 'contacto__estado contacto__estado--ok';
+                }
+            } catch (error) {
+                if (estado) {
+                    estado.textContent = 'No se pudo enviar el mensaje. Intentalo nuevamente en unos minutos.';
+                    estado.className = 'contacto__estado contacto__estado--error';
+                }
+            } finally {
+                if (botonEnviar) {
+                    botonEnviar.disabled = false;
+                }
+            }
+        });
+    });
 });
 
 // ...existing code...

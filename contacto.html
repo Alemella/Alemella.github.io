@@ -39,7 +39,11 @@
         <section class="contacto" id="contacto">
             <h2>Contacto</h2>
             <p class="contacto__intro">Si quieres hacer una consulta, proponer una colaboración o hablar sobre un proyecto, déjame tus datos y te responderé a la brevedad.</p>
-            <form class="contacto__formulario">
+            <form class="contacto__formulario" action="https://formsubmit.co/alejandros.mella5@gmail.com" method="POST" data-contact-form>
+                <input type="hidden" name="_subject" value="Nuevo mensaje desde tu portafolio">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
                 <label for="nombre">Nombre</label>
                 <input type="text" id="nombre" name="nombre" required>
                 <label for="email">Email</label>
@@ -47,6 +51,7 @@
                 <label for="mensaje">Mensaje</label>
                 <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
                 <button type="submit">Enviar</button>
+                <p class="contacto__estado" aria-live="polite"></p>
             </form>
             <ul class="contacto__datos">
                 <li>Teléfono: +569-50550305</li>
