@@ -673,16 +673,6 @@ body.dark-mode .carrusel-bloque {
     display: none;
 }
 
-.lang-select {
-    position: relative;
-    margin-left: 0.1rem;
-    margin-right: -25px;
-}
-
-.navbar > .lang-select {
-    transform: translateX(0);
-}
-
 .lang-toggle {
     min-width: 56px;
     height: 30px;
