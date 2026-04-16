@@ -1830,6 +1830,7 @@ body.dark-mode .theme-toggle__icon--sun {
     }
 
     .navbar__logo,
+    .navbar > .lang-toggle,
     .navbar > .theme-toggle,
     .navbar > .lang-select {
         display: none !important;
