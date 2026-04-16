@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Modo oscuro
     const botonesTema = document.querySelectorAll('[data-theme-toggle]');
     const botonesIdioma = document.querySelectorAll('[data-lang-toggle]');
-    const selectoresIdioma = document.querySelectorAll('[data-lang-select]');
-    const opcionesIdioma = document.querySelectorAll('[data-lang-option]');
     const navbar = document.querySelector('.navbar');
     const btnMenu = document.getElementById('menu-toggle');
     const navbarLinks = document.getElementById('navbar-links');
@@ -132,24 +130,6 @@ document.addEventListener('DOMContentLoaded', function() {
         btnMenu.setAttribute('aria-label', estaAbierto ? t.nav.cerrarMenu : t.nav.abrirMenu);
     }
 
-    function cerrarSelectoresIdioma() {
-        selectoresIdioma.forEach((selector) => {
-            selector.classList.remove('lang-select--open');
-        });
-
-        botonesIdioma.forEach((botonIdioma) => {
-            botonIdioma.setAttribute('aria-expanded', 'false');
-        });
-    }
-
-    function actualizarEstadoSelectorIdioma() {
-        opcionesIdioma.forEach((opcion) => {
-            const activa = opcion.dataset.langOption === idiomaActual;
-            opcion.classList.toggle('is-active', activa);
-            opcion.setAttribute('aria-selected', String(activa));
-        });
-    }
-
     function textoMultilenguaje(valor) {
         if (typeof valor === 'string') {
             return valor;
@@ -240,8 +220,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        actualizarEstadoSelectorIdioma();
-
         actualizarEstadoBotonTema();
         actualizarEstadoBotonMenu(navbar ? navbar.classList.contains('navbar--open') : false);
 
@@ -252,50 +230,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (botonesIdioma.length > 0) {
         botonesIdioma.forEach((botonIdioma) => {
-            botonIdioma.addEventListener('click', function(evento) {
-                evento.stopPropagation();
-
-                const selector = botonIdioma.closest('[data-lang-select]');
-                if (!selector) {
-                    return;
-                }
-
-                const abrir = !selector.classList.contains('lang-select--open');
-                cerrarSelectoresIdioma();
-
-                if (abrir) {
-                    selector.classList.add('lang-select--open');
-                    botonIdioma.setAttribute('aria-expanded', 'true');
-                }
-            });
-        });
-    }
-
-    if (opcionesIdioma.length > 0) {
-        opcionesIdioma.forEach((opcion) => {
-            opcion.addEventListener('click', function(evento) {
-                evento.stopPropagation();
-
-                const nuevoIdioma = opcion.dataset.langOption;
-                if (nuevoIdioma !== 'es' && nuevoIdioma !== 'en') {
-                    return;
-                }
-
-                idiomaActual = nuevoIdioma;
+            botonIdioma.addEventListener('click', function() {
+                idiomaActual = idiomaActual === 'es' ? 'en' : 'es';
                 localStorage.setItem('portfolio-lang', idiomaActual);
                 aplicarIdioma();
-                cerrarSelectoresIdioma();
             });
         });
     }
-
-    document.addEventListener('click', cerrarSelectoresIdioma);
-
-    document.addEventListener('keydown', function(evento) {
-        if (evento.key === 'Escape') {
-            cerrarSelectoresIdioma();
-        }
-    });
 
     function cerrarMenuNavegacion() {
         if (!navbar || !btnMenu) {
@@ -305,7 +246,6 @@ document.addEventListener('DOMContentLoaded', function() {
         navbar.classList.remove('navbar--open');
         btnMenu.setAttribute('aria-expanded', 'false');
         actualizarEstadoBotonMenu(false);
-        cerrarSelectoresIdioma();
     }
 
     if (btnMenu && navbar && navbarLinks) {
