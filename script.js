@@ -306,11 +306,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 es: 'Demo de chat en tiempo real con dos clientes conectados simultaneamente.',
                 en: 'Real-time chat demo with two clients connected simultaneously.'
             },
-            mediaSrc: 'assets/ChatRealTime.mp4',
+            mediaType: 'image',
+            mediaSrc: 'assets/RealTimeChat.png',
             mediaAlt: {
-                es: 'Video demo de chat en tiempo real',
-                en: 'Real-time chat demo video'
+                es: 'Captura del chat en tiempo real',
+                en: 'Real-time chat screenshot'
             },
+            mediaClass: 'proyectos__video--contain',
             previewSrc: 'assets/carruselChat.jpeg',
             previewAlt: {
                 es: 'Vista previa del chat en tiempo real',
@@ -320,7 +322,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 es: 'Proyecto personal',
                 en: 'Side project'
             },
-            githubUrl: 'https://github.com/Alemella/chatTiempoReal'
+            githubUrl: 'https://github.com/Alemella/chatTiempoReal',
+            demos: [
+                {
+                    icon: 'assets/faviconReactChat.png',
+                    label: 'Chat React',
+                    url: 'https://chat-tiempo-real-react.vercel.app/'
+                },
+                {
+                    icon: 'assets/faviconVueChat.png',
+                    label: 'Chat Vue',
+                    url: 'https://chat-tiempo-real-vue.vercel.app/'
+                }
+            ]
         }
     ];
     let indexActual = 0;
@@ -339,12 +353,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function construirMarkupProyecto(proyectoActual) {
-        return `
-            <div class="proyectos__principal-media">
+        const mediaMarkup = proyectoActual.mediaType === 'image'
+            ? `
+                <img class="proyectos__video ${proyectoActual.mediaClass || ''}" src="${proyectoActual.mediaSrc}" alt="${textoMultilenguaje(proyectoActual.mediaAlt)}">
+            `
+            : `
                 <video class="proyectos__video ${proyectoActual.mediaClass || ''}" autoplay muted loop playsinline>
                     <source src="${proyectoActual.mediaSrc}" type="video/mp4">
                     Tu navegador no soporta el elemento de video.
                 </video>
+            `;
+
+        return `
+            <div class="proyectos__principal-media">
+                ${mediaMarkup}
             </div>
             <div class="proyectos__principal-body">
                 <div class="proyectos__principal-meta">
@@ -359,6 +381,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span class="proyectos__etiqueta">${textoMultilenguaje(proyectoActual.etiqueta)}</span>
                 </div>
                 <p class="proyectos__descripcion-breve">${textoMultilenguaje(proyectoActual.descripcion)}</p>
+                ${proyectoActual.demos ? `
+                    <div class="proyectos__demos">
+                        <span class="proyectos__demos-label">Prueba acá:</span>
+                        <div class="proyectos__demos-links">
+                            ${proyectoActual.demos.map(demo => `
+                                <a href="${demo.url}" target="_blank" rel="noopener noreferrer" class="proyectos__demo-link" title="${demo.label}">
+                                    <img src="${demo.icon}" alt="${demo.label}">
+                                </a>
+                            `).join('')}
+                        </div>
+                    </div>
+                ` : ''}
             </div>
         `;
     }
@@ -379,10 +413,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const proyectoActual = proyectos[indiceNormalizado];
-        const esTaurus = proyectoActual.mediaClass === 'proyectos__video--contain';
+        const esContain = proyectoActual.mediaClass === 'proyectos__video--contain';
 
         const renderizarProyecto = function() {
-            proyectosPrincipal.classList.toggle('proyectos__principal--contain', esTaurus);
+            proyectosPrincipal.classList.toggle('proyectos__principal--contain', esContain);
 
             proyectosPrincipal.innerHTML = construirMarkupProyecto(proyectoActual);
 
