@@ -1957,6 +1957,8 @@ body.dark-mode .theme-toggle__icon--sun {
     justify-items: center;
     position: relative;
     z-index: 1;
+    perspective: 1800px;
+    overflow: hidden;
 }
 
 .proyectos__principal {
@@ -1969,7 +1971,15 @@ body.dark-mode .theme-toggle__icon--sun {
     opacity: 1;
     transform: translateY(0) scale(1);
     filter: blur(0);
-    transition: opacity 0.28s ease, transform 0.28s ease, filter 0.28s ease;
+    transform-origin: center center;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transition:
+        opacity 0.38s ease,
+        transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.38s ease,
+        box-shadow 0.38s ease;
+    will-change: transform, opacity, filter;
 }
 
 .proyectos__principal {
@@ -2051,16 +2061,28 @@ body:not(.dark-mode) .proyectos__etiqueta {
     box-shadow: 0 0 0 2px color-mix(in srgb, var(--edge-outline) 70%, white 30%), 0 24px 70px color-mix(in srgb, #000 22%, transparent);
 }
 
-.proyectos__principal--saliendo {
+.proyectos__principal--salida-izquierda {
     opacity: 0;
-    transform: translateY(8px) scale(0.995);
-    filter: blur(1px);
+    transform: translate3d(-92px, 12px, -80px) rotateY(18deg) rotateZ(-1.2deg) scale(0.94);
+    filter: blur(3px) saturate(0.92);
 }
 
-.proyectos__principal--entrando {
+.proyectos__principal--salida-derecha {
     opacity: 0;
-    transform: translateY(-8px) scale(0.995);
-    filter: blur(1px);
+    transform: translate3d(92px, 12px, -80px) rotateY(-18deg) rotateZ(1.2deg) scale(0.94);
+    filter: blur(3px) saturate(0.92);
+}
+
+.proyectos__principal--entrada-izquierda {
+    opacity: 0;
+    transform: translate3d(-92px, 12px, -80px) rotateY(18deg) rotateZ(-1.2deg) scale(0.94);
+    filter: blur(3px) saturate(0.92);
+}
+
+.proyectos__principal--entrada-derecha {
+    opacity: 0;
+    transform: translate3d(92px, 12px, -80px) rotateY(-18deg) rotateZ(1.2deg) scale(0.94);
+    filter: blur(3px) saturate(0.92);
 }
 
 .proyectos__principal--activo {
@@ -2316,6 +2338,15 @@ body:not(.dark-mode) .proyectos__btn {
 @media (prefers-reduced-motion: reduce) {
     .proyectos__principal {
         transition: none;
+    }
+
+    .proyectos__principal--salida-izquierda,
+    .proyectos__principal--salida-derecha,
+    .proyectos__principal--entrada-izquierda,
+    .proyectos__principal--entrada-derecha {
+        opacity: 1;
+        transform: none;
+        filter: none;
     }
 
     .proyectos__indicador {

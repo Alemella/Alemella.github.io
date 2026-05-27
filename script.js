@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
             nav: {
                 sobreMi: 'Sobre mi',
                 tecnologias: 'Tecnologias',
-                aficiones: 'Aficiones',
+                aficiones: 'Intereses',
                 proyectos: 'Proyectos',
                 contacto: 'Contacto',
                 abrirMenu: 'Abrir menu',
@@ -30,15 +30,15 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             secciones: {
                 sobreMiTitulo: 'Sobre mi',
-                sobreMiP1: 'Me he desempenado en el desarrollo de sistemas de gestion de compras, ventas y operaciones para servitecas y talleres. Soy desarrollador web full stack, con foco en front-end.',
+                sobreMiP1: 'Me he desempeñado en el desarrollo de sistemas de gestion de compras, ventas y operaciones para servitecas y talleres. Soy desarrollador web full stack, con foco en front-end.',
                 sobreMiP2: 'Me motiva combinar creatividad, logica y tecnologia para resolver problemas.',
-                sobreMiP3: 'En mi tiempo libre disfruto de los videojuegos, y recientemente he comenzado a explorar su desarrollo.',
+                sobreMiP3: 'En mi tiempo libre disfruto creando proyectos personales y experimentando con nuevas ideas.',
                 tecnologias: 'Tecnologias',
-                aficiones: 'Aficiones',
+                aficiones: 'Intereses',
                 aficion1: 'Diseno de interfaces',
                 aficion2: 'Resolucion de problemas',
                 aficion3: 'Automatizacion de procesos',
-                aficion4: 'Videojuegos',
+                aficion4: 'Optimización de sistemas',
                 proyectos: 'Proyectos',
                 contacto: 'Contacto',
                 contactoIntro: 'Si quieres hacer una consulta, proponer una colaboracion o hablar sobre un proyecto, dejame tus datos y te respondere a la brevedad.',
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
             nav: {
                 sobreMi: 'About me',
                 tecnologias: 'Technologies',
-                aficiones: 'Hobbies',
+                aficiones: 'Interests',
                 proyectos: 'Projects',
                 contacto: 'Contact',
                 abrirMenu: 'Open menu',
@@ -82,13 +82,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 sobreMiTitulo: 'About me',
                 sobreMiP1: 'I have worked on management systems for purchases, sales, and operations in tire shops and workshops. I am a full stack web developer focused on front-end.',
                 sobreMiP2: 'I am motivated by combining creativity, logic, and technology to solve problems.',
-                sobreMiP3: 'In my free time I enjoy video games, and recently I have started exploring game development.',
+                sobreMiP3: 'In my free time I enjoy creating personal projects and experimenting with new ideas.',
                 tecnologias: 'Technologies',
-                aficiones: 'Hobbies',
+                aficiones: 'Interests',
                 aficion1: 'Interface design',
                 aficion2: 'Problem solving',
                 aficion3: 'Process automation',
-                aficion4: 'Video games',
+                aficion4: 'Systems optimization',
                 proyectos: 'Projects',
                 contacto: 'Contact',
                 contactoIntro: 'If you want to ask something, propose a collaboration, or talk about a project, leave your details and I will reply shortly.',
@@ -339,8 +339,19 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
     let indexActual = 0;
     let enTransicionProyecto = false;
-    const duracionTransicionProyecto = 280;
+    const duracionTransicionProyecto = 320;
     const reducirAnimaciones = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function obtenerDireccionProyecto(indiceOrigen, indiceDestino) {
+        if (indiceOrigen === indiceDestino || proyectos.length < 2) {
+            return 'right';
+        }
+
+        const avance = (indiceDestino - indiceOrigen + proyectos.length) % proyectos.length;
+        const retroceso = (indiceOrigen - indiceDestino + proyectos.length) % proyectos.length;
+
+        return avance <= retroceso ? 'right' : 'left';
+    }
 
     function actualizarEstadoBotonesProyecto(deshabilitado) {
         if (btnPrev) {
@@ -397,7 +408,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
 
-    function mostrarProyecto(indice, forzar = false) {
+    function mostrarProyecto(indice, forzar = false, direccion = 'right') {
         if (!proyectosPrincipal) {
             return;
         }
@@ -417,6 +428,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const renderizarProyecto = function() {
             proyectosPrincipal.classList.toggle('proyectos__principal--contain', esContain);
+            proyectosPrincipal.dataset.direccion = direccion;
 
             proyectosPrincipal.innerHTML = construirMarkupProyecto(proyectoActual);
 
@@ -434,7 +446,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     boton.addEventListener('click', function() {
                         const indiceSeleccionado = Number(this.dataset.indice);
                         if (!Number.isNaN(indiceSeleccionado)) {
-                            mostrarProyecto(indiceSeleccionado);
+                            mostrarProyecto(indiceSeleccionado, false, obtenerDireccionProyecto(indexActual, indiceSeleccionado));
                         }
                     });
                 });
@@ -445,24 +457,51 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (forzar || reducirAnimaciones || !proyectosPrincipal.innerHTML.trim()) {
             renderizarProyecto();
-            proyectosPrincipal.classList.remove('proyectos__principal--saliendo', 'proyectos__principal--entrando');
+            proyectosPrincipal.classList.remove(
+                'proyectos__principal--saliendo',
+                'proyectos__principal--entrando',
+                'proyectos__principal--salida-izquierda',
+                'proyectos__principal--salida-derecha',
+                'proyectos__principal--entrada-izquierda',
+                'proyectos__principal--entrada-derecha'
+            );
             proyectosPrincipal.classList.add('proyectos__principal--activo');
             return;
         }
 
         enTransicionProyecto = true;
         actualizarEstadoBotonesProyecto(true);
-        proyectosPrincipal.classList.remove('proyectos__principal--activo', 'proyectos__principal--entrando');
-        proyectosPrincipal.classList.add('proyectos__principal--saliendo');
+        const claseSalida = direccion === 'left'
+            ? 'proyectos__principal--salida-derecha'
+            : 'proyectos__principal--salida-izquierda';
+        const claseEntrada = direccion === 'left'
+            ? 'proyectos__principal--entrada-izquierda'
+            : 'proyectos__principal--entrada-derecha';
+
+        proyectosPrincipal.classList.remove(
+            'proyectos__principal--activo',
+            'proyectos__principal--entrando',
+            'proyectos__principal--saliendo',
+            'proyectos__principal--salida-izquierda',
+            'proyectos__principal--salida-derecha',
+            'proyectos__principal--entrada-izquierda',
+            'proyectos__principal--entrada-derecha'
+        );
+        proyectosPrincipal.classList.add(claseSalida);
 
         window.setTimeout(function() {
             renderizarProyecto();
-            proyectosPrincipal.classList.remove('proyectos__principal--saliendo', 'proyectos__principal--activo');
-            proyectosPrincipal.classList.add('proyectos__principal--entrando');
+            proyectosPrincipal.classList.remove(
+                'proyectos__principal--saliendo',
+                'proyectos__principal--activo',
+                'proyectos__principal--salida-izquierda',
+                'proyectos__principal--salida-derecha'
+            );
+            proyectosPrincipal.classList.add(claseEntrada);
 
             requestAnimationFrame(function() {
                 requestAnimationFrame(function() {
-                    proyectosPrincipal.classList.remove('proyectos__principal--entrando');
+                    proyectosPrincipal.classList.remove(claseEntrada);
                     proyectosPrincipal.classList.add('proyectos__principal--activo');
                     enTransicionProyecto = false;
                     actualizarEstadoBotonesProyecto(false);
@@ -473,13 +512,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (btnPrev && proyectos.length > 1) {
         btnPrev.addEventListener('click', function() {
-            mostrarProyecto(indexActual - 1);
+            mostrarProyecto(indexActual - 1, false, 'left');
         });
     }
 
     if (btnNext && proyectos.length > 1) {
         btnNext.addEventListener('click', function() {
-            mostrarProyecto(indexActual + 1);
+            mostrarProyecto(indexActual + 1, false, 'right');
         });
     }
 
