@@ -33,9 +33,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 sobreMiP1: 'Me he desempeñado en el desarrollo de sistemas de gestion de compras, ventas y operaciones para servitecas y talleres. Soy desarrollador web full stack, con foco en front-end.',
                 sobreMiP2: 'Me motiva combinar creatividad, logica y tecnologia para resolver problemas.',
                 sobreMiP3: 'En mi tiempo libre disfruto creando proyectos personales y experimentando con nuevas ideas.',
+                gitHubPersonal: 'Ver perfil de GitHub',
+                verCV: 'Ver CV',
                 tecnologias: 'Tecnologias',
                 aficiones: 'Intereses',
-                aficion1: 'Diseno de interfaces',
+                aficion1: 'Diseño de interfaces',
                 aficion2: 'Resolucion de problemas',
                 aficion3: 'Automatizacion de procesos',
                 aficion4: 'Optimización de sistemas',
@@ -83,6 +85,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 sobreMiP1: 'I have worked on management systems for purchases, sales, and operations in tire shops and workshops. I am a full stack web developer focused on front-end.',
                 sobreMiP2: 'I am motivated by combining creativity, logic, and technology to solve problems.',
                 sobreMiP3: 'In my free time I enjoy creating personal projects and experimenting with new ideas.',
+                gitHubPersonal: 'View GitHub Profile',
+                verCV: 'View CV',
                 tecnologias: 'Technologies',
                 aficiones: 'Interests',
                 aficion1: 'Interface design',
@@ -203,6 +207,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (labelMensaje) labelMensaje.textContent = t.secciones.mensaje;
         if (botonEnviar) botonEnviar.textContent = t.secciones.enviar;
         if (footer) footer.textContent = t.secciones.footer;
+
+        const btnGitHub = document.querySelector('.btn-github span');
+        const btnCV = document.querySelector('.btn-cv span');
+        if (btnGitHub) btnGitHub.textContent = t.secciones.gitHubPersonal;
+        if (btnCV) btnCV.textContent = t.secciones.verCV;
 
         if (btnPrev) {
             btnPrev.setAttribute('aria-label', t.proyectos.anterior);

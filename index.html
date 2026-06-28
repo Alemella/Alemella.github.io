@@ -16,6 +16,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body class="dark-mode">
@@ -25,6 +28,7 @@
                 <nav class="navbar">
     <div class="navbar__logo">
         <span>Alejandro Mella</span>
+        <span class="navbar__status" aria-label="Buscando trabajo" title="Disponible para trabajar"></span>
     </div>
         <button id="menu-toggle" class="navbar__toggle" type="button" aria-label="Abrir menú" aria-controls="navbar-links" aria-expanded="false">
             <span></span>
@@ -112,6 +116,16 @@
         <p>
             En mi tiempo libre disfruto creando proyectos personales y experimentando con nuevas ideas.
         </p>
+        <div class="sobre-tech__botones">
+            <a href="https://github.com/Alemella" target="_blank" rel="noopener" class="btn-icono btn-github" aria-label="Ver GitHub personal">
+                <i class="fab fa-github"></i>
+                <span>Ver GitHub personal</span>
+            </a>
+            <a href="assets/CV-Alejandro Mella.pdf" target="_blank" rel="noopener" class="btn-icono btn-cv" aria-label="Descargar CV">
+                <i class="fas fa-file-pdf"></i>
+                <span>Ver CV</span>
+            </a>
+        </div>
     </article>
 
     <article class="sobre-tech__stack" id="tecnologias">
@@ -240,6 +254,11 @@
     <footer class="footer">
         <p>© 2026 · Portafolio profesional</p>
     </footer>
+
+    <!-- WhatsApp Bubble -->
+    <a href="https://wa.me/56950550305" target="_blank" rel="noopener" class="whatsapp-bubble" aria-label="Contactar por WhatsApp" title="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script src="script.js" defer></script>
 </body>

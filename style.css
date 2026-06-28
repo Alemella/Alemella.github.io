@@ -621,6 +621,26 @@ body.dark-mode .carrusel-bloque {
   font-size: 1.1rem;
     flex: 0 0 auto;
 }
+
+.navbar__status {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+  animation: pulse-online 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse-online {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.6), 0 0 0 0 rgba(34, 197, 94, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.8), 0 0 6px 3px rgba(34, 197, 94, 0.2);
+  }
+}
+
 .navbar__links {
   display: flex;
   gap: 1.5rem;
@@ -1451,6 +1471,76 @@ body,
     max-width: 58ch;
 }
 
+.sobre-tech__botones {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.btn-icono {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    background: rgba(56, 157, 255, 0.15);
+    border: 2px solid rgba(56, 157, 255, 0.5);
+    color: #389dff;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-icono i {
+    font-size: 1.25rem;
+}
+
+.btn-icono:hover {
+    background: rgba(56, 157, 255, 0.3);
+    border-color: rgba(56, 157, 255, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(56, 157, 255, 0.3);
+}
+
+.btn-cv {
+    background: rgba(255, 90, 115, 0.15);
+    border-color: rgba(255, 90, 115, 0.5);
+    color: #ff5a73;
+}
+
+.btn-cv:hover {
+    background: rgba(255, 90, 115, 0.3);
+    border-color: rgba(255, 90, 115, 0.8);
+    box-shadow: 0 8px 16px rgba(255, 90, 115, 0.3);
+}
+
+/* Modo claro para botones */
+body:not(.dark-mode) .btn-icono {
+    background: #e6f2ff;
+    border-color: #2563eb;
+    color: #1e40af;
+}
+
+body:not(.dark-mode) .btn-icono:hover {
+    background: #dce6ff;
+    border-color: #1e40af;
+    box-shadow: 0 8px 16px rgba(30, 64, 175, 0.2);
+}
+
+body:not(.dark-mode) .btn-cv {
+    background: #ffe6ec;
+    border-color: #dc2626;
+    color: #b91c1c;
+}
+
+body:not(.dark-mode) .btn-cv:hover {
+    background: #ffd9e0;
+    border-color: #b91c1c;
+    box-shadow: 0 8px 16px rgba(185, 28, 28, 0.2);
+}
+
 .tech-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(120px, 1fr));
@@ -2047,6 +2137,20 @@ body:not(.dark-mode) .proyectos__etiqueta {
     border-color: #111;
 }
 
+body:not(.dark-mode) .proyectos__principal {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.1);
+}
+
+body:not(.dark-mode) .proyectos__principal-meta h3 {
+    color: #111827;
+}
+
+body:not(.dark-mode) .proyectos__principal-body {
+    color: #374151;
+}
+
 .proyectos__video {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -2351,5 +2455,52 @@ body:not(.dark-mode) .proyectos__btn {
 
     .proyectos__indicador {
         transition: none;
+    }
+}
+
+/* WhatsApp Bubble */
+.whatsapp-bubble {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #25d366 0%, #20ba5a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.8rem;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s ease;
+    z-index: 99;
+    text-decoration: none;
+}
+
+.whatsapp-bubble:hover {
+    transform: scale(1.1) translateY(-4px);
+    box-shadow: 0 12px 32px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-bubble:active {
+    transform: scale(0.95);
+}
+
+body:not(.dark-mode) .whatsapp-bubble {
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+}
+
+body:not(.dark-mode) .whatsapp-bubble:hover {
+    box-shadow: 0 12px 32px rgba(37, 211, 102, 0.5);
+}
+
+@media (max-width: 768px) {
+    .whatsapp-bubble {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 55px;
+        height: 55px;
+        font-size: 1.6rem;
     }
 }
