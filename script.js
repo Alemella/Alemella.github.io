@@ -331,8 +331,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 { icono: 'devicon-mysql-plain colored', nombre: 'MySQL' }
             ],
             infoTecnica: {
-                es: 'Agregá aquí el detalle técnico de Taurus: arquitectura, lenguajes, base de datos, librerías clave, etc.',
-                en: 'Add the technical detail of Taurus here: architecture, languages, database, key libraries, etc.'
+                es: 'Arquitectura Cliente-Servidor basada en API REST. Frontend desarrollado con Vue.js, JavaScript, Bootstrap y Element Plus. Backend en PHP con Laravel (MVC). Base de datos MariaDB/MySQL utilizando procedimientos almacenados, funciones SQL y vistas. Consumo de servicios REST mediante Axios. Control de versiones con Git/GitHub y uso de Postman, DBeaver y Visual Studio Code para desarrollo y pruebas.',
+                en: 'Client-Server Architecture based on REST API. Frontend developed with Vue.js, JavaScript, Bootstrap and Element Plus. Backend in PHP with Laravel (MVC). Database MariaDB/MySQL using stored procedures, SQL functions and views. Consumption of REST services through Axios. Version control with Git/GitHub and use of Postman, DBeaver and Visual Studio Code for development and testing.'
             }
         },
         {
@@ -380,8 +380,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 { icono: 'devicon-nodejs-plain colored', nombre: 'Node.js' }
             ],
             infoTecnica: {
-                es: ' proyecto personal diseñado para demostrar la comunicación bidireccional y simultánea en tiempo real entre dos clientes independientes construidos en React y Vue.',
-                en: 'Personal project designed to demonstrate bidirectional and simultaneous real-time communication between two independent clients built with React and Vue.'
+                es: 'Arquitectura cliente-servidor basada en WebSockets utilizando Socket.io. Desarrollo de dos clientes frontend independientes en React (Hooks y Context API) y Vue 3 (Composition API y Pinia), conectados a un backend en Node.js. Implementación de mensajería en tiempo real, manejo del estado de conexión, componentes reutilizables, separación entre UI y lógica de negocio, gestión centralizada del servicio Socket y control de versiones con Git/GitHub.',
+                en: 'Client-server architecture based on WebSockets using Socket.io. Development of two independent frontend clients in React (Hooks and Context API) and Vue 3 (Composition API and Pinia), connected to a Node.js backend. Implementation of real-time messaging, connection state management, reusable components, separation between UI and business logic, centralized management of the Socket service, and version control with Git/GitHub.'
             }
         },
 
