@@ -1,6 +1,20 @@
 // ...existing code...
 
+function asegurarIconosDevicon() {
+    if (document.querySelector('link[data-devicon]')) {
+        return;
+    }
+
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css';
+    link.setAttribute('data-devicon', 'true');
+    document.head.appendChild(link);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    asegurarIconosDevicon();
+
     // Modo oscuro
     const botonesTema = document.querySelectorAll('[data-theme-toggle]');
     const botonesIdioma = document.querySelectorAll('[data-lang-toggle]');
@@ -54,7 +68,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 anterior: 'Proyecto anterior',
                 siguiente: 'Proyecto siguiente',
                 ver: 'Ver',
-                github: 'en GitHub'
+                github: 'en GitHub',
+                stackLabel: 'Stack',
+                infoTecnicaResumen: 'Detalles técnicos',
+                demosLabel: 'Prueba acá'
             },
             formulario: {
                 enviando: 'Enviando mensaje...',
@@ -106,7 +123,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 anterior: 'Previous project',
                 siguiente: 'Next project',
                 ver: 'View',
-                github: 'on GitHub'
+                github: 'on GitHub',
+                stackLabel: 'Stack',
+                infoTecnicaResumen: 'Technical details',
+                demosLabel: 'Try it here'
             },
             formulario: {
                 enviando: 'Sending message...',
@@ -283,8 +303,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const proyectos = [
         {
             titulo: {
-                es: 'Demo Taurus',
-                en: 'Taurus Demo'
+                es: 'Taurus',
+                en: 'Taurus'
             },
             descripcion: {
                 es: 'Desarrollo de una plataforma enfocada en la optimizacion de compras, ventas y operaciones para servitecas y talleres, centralizando la informacion y ofreciendo monitoreo en tiempo real.',
@@ -292,8 +312,8 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             mediaSrc: 'assets/DEMO TAURUS.mp4',
             mediaAlt: {
-                es: 'Video demo de Taurus',
-                en: 'Taurus demo video'
+                es: 'Video de Taurus',
+                en: 'Taurus video'
             },
             mediaClass: 'proyectos__video--contain',
             previewSrc: 'assets/carruselTaurus.jpeg',
@@ -304,16 +324,25 @@ document.addEventListener('DOMContentLoaded', function() {
             etiqueta: {
                 es: 'Sistema',
                 en: 'System'
+            },
+            tecnologias: [
+                { icono: 'devicon-vuejs-plain colored', nombre: 'Vue.js' },
+                { icono: 'devicon-laravel-plain colored', nombre: 'Laravel' },
+                { icono: 'devicon-mysql-plain colored', nombre: 'MySQL' }
+            ],
+            infoTecnica: {
+                es: 'Agregá aquí el detalle técnico de Taurus: arquitectura, lenguajes, base de datos, librerías clave, etc.',
+                en: 'Add the technical detail of Taurus here: architecture, languages, database, key libraries, etc.'
             }
         },
         {
             titulo: {
-                es: 'Chat en tiempo real',
-                en: 'Real-time chat'
+                es: 'ReVu Chat',
+                en: 'ReVu Chat'
             },
             descripcion: {
-                es: 'Demo de chat en tiempo real con dos clientes conectados simultaneamente.',
-                en: 'Real-time chat demo with two clients connected simultaneously.'
+                es: 'Plataforma de mensajería instantánea en tiempo real que permite a dos personas conversar sin interrupciones ni retrasos. El proyecto simula una sala de chat interactiva donde los mensajes se envían y reciben al instante mediante dos pantallas conectadas de forma simultánea.',
+                en: 'Instant messaging platform in real-time that allows two people to chat without interruptions or delays. The project simulates an interactive chat room where messages are sent and received instantly through two connected screens simultaneously.'
             },
             mediaType: 'image',
             mediaSrc: 'assets/RealTimeChat.png',
@@ -322,7 +351,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 en: 'Real-time chat screenshot'
             },
             mediaClass: 'proyectos__video--contain',
-            previewSrc: 'assets/carruselChat.jpeg',
+            previewSrc: 'assets/RevuCarrusel.png',
             previewAlt: {
                 es: 'Vista previa del chat en tiempo real',
                 en: 'Real-time chat preview'
@@ -343,7 +372,66 @@ document.addEventListener('DOMContentLoaded', function() {
                     label: 'Chat Vue',
                     url: 'https://chat-tiempo-real-vue.vercel.app/'
                 }
-            ]
+            ],
+            tecnologias: [
+                { icono: 'devicon-react-original colored', nombre: 'React' },
+                { icono: 'devicon-vuejs-plain colored', nombre: 'Vue.js' },
+                { icono: 'devicon-socketio-original colored', nombre: 'Socket.IO' },
+                { icono: 'devicon-nodejs-plain colored', nombre: 'Node.js' }
+            ],
+            infoTecnica: {
+                es: ' proyecto personal diseñado para demostrar la comunicación bidireccional y simultánea en tiempo real entre dos clientes independientes construidos en React y Vue.',
+                en: 'Personal project designed to demonstrate bidirectional and simultaneous real-time communication between two independent clients built with React and Vue.'
+            }
+        },
+
+        {
+            titulo: {
+                es: 'TaskDay',
+                en: 'TaskDay'
+            },
+            descripcion: {
+                es: 'Aplicación móvil para la gestión de tareas, diseñada para ayudar a los usuarios a organizar sus actividades diarias de forma simple e intuitiva. Permite crear, editar, completar y eliminar tareas, además de gestionar la autenticación de usuarios para mantener la información sincronizada y segura.',
+                en: 'Mobile task management application designed to help users organize their daily activities in a simple and intuitive way. Allows creating, editing, completing and deleting tasks, as well as managing user authentication to keep information synchronized and secure.'
+            },
+            mediaSrc: 'assets/TaskDayx2.mp4',
+            mediaAlt: {
+                es: 'Video TaskDay',
+                en: 'TaskDay video'
+            },
+            mediaClass: 'proyectos__video--contain',
+            previewSrc: 'assets/carruselTaskday.jpeg',
+            previewAlt: {
+                es: 'Vista previa de TaskDay',
+                en: 'TaskDay preview'
+            },
+            etiqueta: {
+                es: 'Proyecto personal',
+                en: 'Side project'
+            },
+            githubUrl: 'https://github.com/Alemella/taskflow-app',
+            demosTitulo: {
+                es: 'Descarga acá',
+                en: 'Download here'
+            },
+            demos: [
+                // TODO: reemplazar por el link real de descarga cuando esté disponible (Play Store, Drive, etc.)
+                {
+                    icon: 'assets/android_apk.png',
+                    label: 'APK Android',
+                    url: 'assets/TaskDay.apk',
+                    descarga: true
+                }
+            ],
+            tecnologias: [
+                { icono: 'devicon-kotlin-plain colored', nombre: 'Kotlin' },
+                { icono: 'devicon-spring-plain colored', nombre: 'Spring Boot' },
+                { icono: 'devicon-postgresql-plain colored', nombre: 'PostgreSQL' },
+            ],
+            infoTecnica: {
+                es: 'TaskDay fue desarrollado como un proyecto Full Stack, utilizando Kotlin para la aplicación Android y Spring Boot para el backend. La comunicación entre ambos se realiza mediante una API REST, con autenticación basada en JWT para proteger el acceso de los usuarios. La persistencia de datos se gestiona con PostgreSQL, mientras que Retrofit se encarga de las solicitudes HTTP desde la aplicación móvil. El proyecto sigue una arquitectura cliente-servidor y aplica operaciones CRUD para la gestión de usuarios y tareas.',
+                en: 'TaskDay was built as a full stack project, using Kotlin for the Android app and Spring Boot for the backend. Communication between them happens through a REST API, with JWT-based authentication to protect user access. Data persistence is managed with PostgreSQL, while Retrofit handles HTTP requests from the mobile app. The project follows a client-server architecture and applies CRUD operations for user and task management.'
+            }
         }
     ];
     let indexActual = 0;
@@ -378,7 +466,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <img class="proyectos__video ${proyectoActual.mediaClass || ''}" src="${proyectoActual.mediaSrc}" alt="${textoMultilenguaje(proyectoActual.mediaAlt)}">
             `
             : `
-                <video class="proyectos__video ${proyectoActual.mediaClass || ''}" autoplay muted loop playsinline>
+                <video class="proyectos__video ${proyectoActual.mediaClass || ''}" controls autoplay muted loop playsinline>
                     <source src="${proyectoActual.mediaSrc}" type="video/mp4">
                     Tu navegador no soporta el elemento de video.
                 </video>
@@ -401,17 +489,44 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span class="proyectos__etiqueta">${textoMultilenguaje(proyectoActual.etiqueta)}</span>
                 </div>
                 <p class="proyectos__descripcion-breve">${textoMultilenguaje(proyectoActual.descripcion)}</p>
-                ${proyectoActual.demos ? `
-                    <div class="proyectos__demos">
-                        <span class="proyectos__demos-label">Prueba acá:</span>
-                        <div class="proyectos__demos-links">
-                            ${proyectoActual.demos.map(demo => `
-                                <a href="${demo.url}" target="_blank" rel="noopener noreferrer" class="proyectos__demo-link" title="${demo.label}">
-                                    <img src="${demo.icon}" alt="${demo.label}">
-                                </a>
-                            `).join('')}
-                        </div>
+                ${(proyectoActual.tecnologias && proyectoActual.tecnologias.length > 0) || proyectoActual.demos ? `
+                    <div class="proyectos__meta-row">
+                        ${proyectoActual.tecnologias && proyectoActual.tecnologias.length > 0 ? `
+                            <div class="proyectos__stack">
+                                <span class="proyectos__stack-label">${textos[idiomaActual].proyectos.stackLabel}</span>
+                                <div class="proyectos__stack-lista">
+                                    ${proyectoActual.tecnologias.map(tech => `
+                                        <span class="proyectos__stack-chip">
+                                            ${tech.icono ? `<i class="${tech.icono}" aria-hidden="true"></i>` : ''}
+                                            <span>${tech.nombre}</span>
+                                        </span>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        ` : ''}
+                        ${proyectoActual.demos ? `
+                            <div class="proyectos__demos">
+                                <span class="proyectos__demos-label">${proyectoActual.demosTitulo ? textoMultilenguaje(proyectoActual.demosTitulo) : textos[idiomaActual].proyectos.demosLabel}</span>
+                                <div class="proyectos__demos-links">
+                                    ${proyectoActual.demos.map(demo => `
+                                        <a href="${demo.url}" ${demo.descarga ? `download` : `target="_blank" rel="noopener noreferrer"`} class="proyectos__demo-link">
+                                            <img src="${demo.icon}" alt="">
+                                            <span>${demo.label}</span>
+                                        </a>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        ` : ''}
                     </div>
+                ` : ''}
+                ${proyectoActual.infoTecnica ? `
+                    <details class="proyectos__info-tecnica">
+                        <summary class="proyectos__info-tecnica-resumen">
+                            <span class="proyectos__info-tecnica-icono" aria-hidden="true">&lt;/&gt;</span>
+                            ${textos[idiomaActual].proyectos.infoTecnicaResumen}
+                        </summary>
+                        <p class="proyectos__info-tecnica-contenido">${textoMultilenguaje(proyectoActual.infoTecnica)}</p>
+                    </details>
                 ` : ''}
             </div>
         `;

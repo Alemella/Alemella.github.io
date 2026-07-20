@@ -411,6 +411,18 @@ body.dark-mode .contacto__estado--error {
     color: var(--color-text-secondary);
 }
 
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 body.dark-mode {
     --color-bg-main: #181818;
     --color-bg-header: #222;
@@ -1469,6 +1481,8 @@ body,
 .sobre-tech__about p {
     color: #b8c0d4;
     max-width: 58ch;
+     font-size: 1.2rem;
+    line-height: 1.8;
 }
 
 .sobre-tech__botones {
@@ -1541,27 +1555,42 @@ body:not(.dark-mode) .btn-cv:hover {
     box-shadow: 0 8px 16px rgba(185, 28, 28, 0.2);
 }
 
-.tech-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(120px, 1fr));
-    gap: 0.75rem;
+.tech-categoria {
+    margin-bottom: 1.35rem;
 }
 
-.tech-card {
-    background: #0f1420;
-    border: 1px solid #2d3750;
-    border-radius: 12px;
-    min-height: 92px;
+.tech-categoria:last-child {
+    margin-bottom: 0;
+}
+
+.tech-categoria__titulo {
+    margin: 0 0 0.7rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.tech-chips {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.35rem;
-    text-align: center;
-    position: relative;
+    flex-wrap: wrap;
+    gap: 0.6rem;
 }
 
-.tech-card::before {
+.tech-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.5rem 0.95rem 0.5rem 0.55rem;
+    border-radius: 999px;
+    background: var(--surface-soft);
+    border: 1px solid var(--surface-border);
+    position: relative;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.tech-chip::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -1572,32 +1601,37 @@ body:not(.dark-mode) .btn-cv:hover {
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-    opacity: 0.9;
+    opacity: 0.4;
     pointer-events: none;
 }
 
-.tech-card img {
-    width: 42px;
-    height: 42px;
+.tech-chip:hover {
+    transform: translateY(-2px);
+    background: color-mix(in srgb, var(--accent) 10%, var(--surface-soft));
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.tech-chip:hover::before {
+    opacity: 0.95;
+}
+
+.tech-chip img {
+    width: 22px;
+    height: 22px;
     object-fit: contain;
+    flex-shrink: 0;
 }
 
-.tech-card--react img {
-    width: 56px;
-    height: 56px;
+.tech-chip span {
+    color: var(--text-main);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
 }
 
-.tech-card--php img {
-    width: 56px;
-    height: 56px;
-}
-
-.tech-card span {
-    color: #f2f6ff;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+body:not(.dark-mode) .tech-chip img {
+    filter: none;
 }
 
 .carrusel-tecnologias {
@@ -1607,10 +1641,6 @@ body:not(.dark-mode) .btn-cv:hover {
 @media (max-width: 980px) {
     .sobre-tech {
         grid-template-columns: 1fr;
-    }
-
-    .tech-grid {
-        grid-template-columns: repeat(2, minmax(100px, 1fr));
     }
 }
 
@@ -2249,43 +2279,79 @@ body:not(.dark-mode) .proyectos__github-link {
 .proyectos__demos {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    margin-top: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
 }
 
 .proyectos__demos-label {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--text-muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.45);
+    white-space: nowrap;
+    margin-right: 2px;
 }
 
 .proyectos__demos-links {
     display: flex;
-    gap: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.4rem;
 }
 
 .proyectos__demo-link {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    border: 1.5px solid color-mix(in srgb, var(--edge-outline) 60%, transparent);
-    background: color-mix(in srgb, var(--surface) 90%, transparent);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.proyectos__demo-link:hover {
-    transform: translateY(-2px);
-    border-color: color-mix(in srgb, var(--edge-outline) 85%, white 15%);
-    box-shadow: 0 8px 18px color-mix(in srgb, var(--edge-outline) 28%, transparent);
+    gap: 0.4rem;
+    padding: 4px 12px 4px 6px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    background: rgba(0, 0, 0, 0.035);
+    color: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1;
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .proyectos__demo-link img {
-    width: 32px;
-    height: 32px;
+    width: 18px;
+    height: 18px;
     object-fit: contain;
+    border-radius: 50%;
+}
+
+.proyectos__demo-link:hover {
+    transform: translateY(-1px);
+    background: color-mix(in srgb, var(--accent) 12%, rgba(0, 0, 0, 0.035));
+    border-color: var(--accent);
+    box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.proyectos__demo-link:active {
+    transform: translateY(0);
+}
+
+/* Modo oscuro */
+body.dark-mode .proyectos__demos-label {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+body.dark-mode .proyectos__demo-link {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+body.dark-mode .proyectos__demo-link:hover {
+    background: color-mix(in srgb, var(--accent) 16%, rgba(255, 255, 255, 0.06));
+    border-color: var(--accent);
+}
+
+@media (max-width: 560px) {
+    .proyectos__demos {
+        gap: 0.4rem;
+    }
 }
 
 .proyectos__indicadores {
@@ -2503,4 +2569,178 @@ body:not(.dark-mode) .whatsapp-bubble:hover {
         height: 55px;
         font-size: 1.6rem;
     }
+}
+
+/* =========================================================
+   Stack de tecnologías (chips con ícono + nombre)
+   ========================================================= */
+
+.proyectos__meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.6rem 1.25rem;
+}
+
+.proyectos__stack {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+.proyectos__demos {
+    margin: 0;
+    margin-left: auto;
+}
+
+@media (max-width: 640px) {
+    .proyectos__meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .proyectos__demos {
+        margin-left: 0;
+    }
+}
+
+.proyectos__stack-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.45);
+    margin-right: 2px;
+}
+
+.proyectos__stack-lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.proyectos__stack-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px 5px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    background: rgba(0, 0, 0, 0.035);
+    font-size: 0.82rem;
+    font-weight: 500;
+    line-height: 1;
+    color: inherit;
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.proyectos__stack-chip:hover {
+    transform: translateY(-1px);
+    background: rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.18);
+}
+
+.proyectos__stack-chip i {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+/* Modo oscuro */
+body.dark-mode .proyectos__stack-label {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+body.dark-mode .proyectos__stack-chip {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+body.dark-mode .proyectos__stack-chip:hover {
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(255, 255, 255, 0.24);
+}
+
+/* =========================================================
+   Panel de info técnica (plegable, estilo "consola")
+   ========================================================= */
+
+.proyectos__info-tecnica {
+    margin-top: 6px;
+    border: 1px solid #d7deea;
+    border-radius: 10px;
+    background: #f3f5f9;
+    overflow: hidden;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.proyectos__info-tecnica-resumen {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    cursor: pointer;
+    padding: 10px 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #1f2937;
+    user-select: none;
+}
+
+.proyectos__info-tecnica-resumen::-webkit-details-marker {
+    display: none;
+}
+
+.proyectos__info-tecnica-resumen::after {
+    content: '▾';
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: #6b7280;
+    transition: transform 0.2s ease;
+}
+
+.proyectos__info-tecnica[open] .proyectos__info-tecnica-resumen::after {
+    transform: rotate(180deg);
+}
+
+.proyectos__info-tecnica-icono {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    color: #15803d;
+    font-size: 0.85rem;
+}
+
+.proyectos__info-tecnica-contenido {
+    margin: 0;
+    padding: 2px 14px 14px 36px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: #374151;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding-top: 12px;
+}
+
+/* Modo oscuro: mantiene el estilo terminal oscuro */
+body.dark-mode .proyectos__info-tecnica {
+    border-color: rgba(255, 255, 255, 0.10);
+    background: #14161a;
+}
+
+body.dark-mode .proyectos__info-tecnica-resumen {
+    color: #e6e6e6;
+}
+
+body.dark-mode .proyectos__info-tecnica-resumen::after {
+    color: #8a8f98;
+}
+
+body.dark-mode .proyectos__info-tecnica-icono {
+    color: #7ee787;
+}
+
+body.dark-mode .proyectos__info-tecnica-contenido {
+    color: #c3c8d1;
+    border-top-color: rgba(255, 255, 255, 0.06);
 }
