@@ -2744,3 +2744,426 @@ body.dark-mode .proyectos__info-tecnica-contenido {
     color: #c3c8d1;
     border-top-color: rgba(255, 255, 255, 0.06);
 }
+
+/* ==========================================================================
+   Mejoras: scroll-reveal, barra de progreso, navbar con scroll, spotlight
+   ========================================================================== */
+
+/* --- Barra de progreso de scroll --- */
+.scroll-progreso {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    z-index: 1000;
+    background: transparent;
+    pointer-events: none;
+}
+
+.scroll-progreso__barra {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #389dff, #ae7bff 55%, #ff5a73);
+    box-shadow: 0 0 12px rgba(56, 157, 255, 0.6);
+    transition: width 0.1s ease-out;
+}
+
+/* --- Navbar reactiva al scroll --- */
+.navbar {
+    transition: box-shadow 0.3s ease, padding 0.3s ease, backdrop-filter 0.3s ease, background 0.3s ease;
+}
+
+.navbar--scrolled {
+    padding-top: 0.45rem;
+    padding-bottom: 0.45rem;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 12px 30px rgba(8, 12, 20, 0.18);
+}
+
+/* --- Spotlight que sigue al cursor --- */
+.cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 520px;
+    height: 520px;
+    margin-left: -260px;
+    margin-top: -260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--accent) 20%, transparent) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    will-change: transform;
+}
+
+.cursor-glow.cursor-glow--activo {
+    opacity: 1;
+}
+
+/* --- Reveal on scroll (fallback: visible sin JS) --- */
+.reveal-init {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s cubic-bezier(0.16, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+
+.reveal-init.reveal-visible {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-init {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+/* ==========================================================================
+   Hero / Presentación principal
+   ========================================================================== */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: clamp(2.5rem, 8vw, 5rem) 1.25rem clamp(3rem, 8vw, 6rem);
+    display: flex;
+    flex-direction: column;
+}
+
+.hero__fondo {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.hero__blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.35;
+    animation: hero-flotar 12s ease-in-out infinite;
+}
+
+.hero__blob--a {
+    width: 380px;
+    height: 380px;
+    top: -120px;
+    left: -80px;
+    background: radial-gradient(circle, #389dff, transparent 70%);
+}
+
+.hero__blob--b {
+    width: 320px;
+    height: 320px;
+    bottom: -140px;
+    right: -60px;
+    background: radial-gradient(circle, #ff5a73, transparent 70%);
+    animation-delay: -6s;
+}
+
+@keyframes hero-flotar {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(24px, -18px) scale(1.08); }
+}
+
+.hero__contenido {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.hero__texto {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    text-align: center;
+}
+
+.hero__pretitulo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0 auto;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.hero__punto {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 70%, transparent);
+    animation: pulse-online 2s ease-in-out infinite;
+}
+
+.hero__titulo {
+    margin: 0;
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1.1;
+    background: linear-gradient(120deg, #389dff, #ae7bff 55%, #ff5a73);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.hero__subtitulo {
+    margin: 0;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 600;
+    color: var(--text-main);
+    min-height: 1.6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    flex-wrap: wrap;
+}
+
+.hero__rotativo {
+    color: var(--accent-strong);
+}
+
+.hero__cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--accent-strong);
+    margin-left: 2px;
+    animation: hero-parpadeo 1s step-end infinite;
+    vertical-align: middle;
+}
+
+@keyframes hero-parpadeo {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.hero__descripcion {
+    margin: 0 auto;
+    max-width: 52ch;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.75;
+}
+
+.hero__acciones {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.4rem;
+}
+
+.hero__btn {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.85rem 1.6rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.hero__btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+}
+
+.hero__btn:hover::before {
+    left: 130%;
+}
+
+.hero__btn--primario {
+    background: linear-gradient(120deg, #389dff, #ae7bff);
+    color: #fff;
+    border: none;
+    box-shadow: 0 10px 26px rgba(56, 157, 255, 0.35);
+}
+
+.hero__btn--primario:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(56, 157, 255, 0.45);
+}
+
+.hero__btn--secundario {
+    background: transparent;
+    color: var(--text-main);
+    border: 1.5px solid var(--surface-border);
+}
+
+.hero__btn--secundario:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 26px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.hero__icono {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1.5px solid var(--surface-border);
+    color: var(--text-main);
+    font-size: 1.2rem;
+    transition: transform 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hero__icono:hover {
+    transform: translateY(-3px) rotate(-6deg);
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 10px 26px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.hero__visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.hero__anillo {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+    animation: hero-girar 18s linear infinite;
+}
+
+.hero__anillo--1 {
+    width: clamp(200px, 46vw, 300px);
+    height: clamp(200px, 46vw, 300px);
+}
+
+.hero__anillo--2 {
+    width: clamp(240px, 54vw, 350px);
+    height: clamp(240px, 54vw, 350px);
+    border-color: color-mix(in srgb, #ff5a73 40%, transparent);
+    animation-direction: reverse;
+    animation-duration: 26s;
+}
+
+@keyframes hero-girar {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.hero__foto {
+    position: relative;
+    width: clamp(170px, 40vw, 250px);
+    height: clamp(170px, 40vw, 250px);
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--surface);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25), 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent);
+    animation: hero-flotar-foto 5s ease-in-out infinite;
+}
+
+@keyframes hero-flotar-foto {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.hero__scroll {
+    align-self: center;
+    margin-top: clamp(2rem, 6vw, 3.5rem);
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 26px;
+    height: 42px;
+    border-radius: 999px;
+    border: 2px solid var(--surface-border);
+    padding-top: 8px;
+    transition: border-color 0.25s ease;
+}
+
+.hero__scroll:hover {
+    border-color: var(--accent);
+}
+
+.hero__scroll-linea {
+    width: 3px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--accent);
+    animation: hero-scroll-caida 1.6s ease-in-out infinite;
+}
+
+@keyframes hero-scroll-caida {
+    0% { transform: translateY(0); opacity: 1; }
+    80% { transform: translateY(14px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 0; }
+}
+
+@media (min-width: 900px) {
+    .hero__contenido {
+        grid-template-columns: 1.15fr 0.85fr;
+        text-align: left;
+    }
+
+    .hero__texto {
+        text-align: left;
+        align-items: flex-start;
+    }
+
+    .hero__pretitulo {
+        margin: 0;
+    }
+
+    .hero__descripcion {
+        margin: 0;
+    }
+
+    .hero__subtitulo,
+    .hero__acciones {
+        justify-content: flex-start;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero__blob,
+    .hero__punto,
+    .hero__cursor,
+    .hero__anillo,
+    .hero__foto,
+    .hero__scroll-linea {
+        animation: none;
+    }
+}
+
+/* --- Stagger extra para chips de tecnología e intereses --- */
+.tech-categoria.reveal-init,
+.aficiones__lista li.reveal-init {
+    transform: translateY(18px);
+}

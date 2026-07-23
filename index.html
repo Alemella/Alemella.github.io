@@ -23,6 +23,8 @@
 
 <body class="dark-mode">
 
+    <div class="scroll-progreso" aria-hidden="true"><span class="scroll-progreso__barra" data-scroll-progreso></span></div>
+
     <!-- Header / Navegación -->
     <header class="cabecera">
                 <nav class="navbar">
@@ -37,6 +39,7 @@
         </button>
         <ul class="navbar__links" id="navbar-links">
         <li class="navbar__name-item"><span>Alejandro Mella</span></li>
+        <li><a href="#inicio">Inicio</a></li>
         <li><a href="#sobre-mi">Sobre mí</a></li>
         <li><a href="#tecnologias">Tecnologías</a></li>
         <li><a href="#aficiones">Intereses</a></li>
@@ -82,29 +85,51 @@
 
     <main>
 
-        <!-- Presentación -->
-        <!-- <section class="presentacion">
-
-    <div class="presentacion__contenedor">
-        <h2 class="presentacion__titulo">
-            Alejandro Sebastian Mella Badaracco
-        </h2>
-        <p class="presentacion__subtitulo">
-            Técnico de Nivel Superior Analista Programador<br>
-            Desarrollador web full stack, especializado en front-end.<br>
-            Experiencia en sistemas de gestión de compras, ventas y operaciones para servitecas y talleres.
-        </p>
-        <ul class="redes">
-            <li><a href="https://github.com/tuusuario" target="_blank" rel="noopener">GitHub <img src="assets/arrow.png" alt=""></a></li>
-            <li><a href="https://linkedin.com/in/tuusuario" target="_blank" rel="noopener">LinkedIn <img src="assets/arrow.png" alt=""></a></li>
-            <li><a href="assets/cv.pdf" target="_blank" rel="noopener">Currículum <img src="assets/arrow.png" alt=""></a></li>
-        </ul>
-    </div>
-</section> -->
+        <!-- Presentación / Hero -->
+        <section class="hero" id="inicio">
+            <div class="hero__fondo" aria-hidden="true">
+                <span class="hero__blob hero__blob--a"></span>
+                <span class="hero__blob hero__blob--b"></span>
+            </div>
+            <div class="hero__contenido">
+                <div class="hero__texto">
+                    <p class="hero__pretitulo" data-reveal>
+                        <span class="hero__punto" aria-hidden="true"></span>
+                        <span data-hero-pretitulo>Hola, soy</span>
+                    </p>
+                    <h1 class="hero__titulo" data-reveal data-reveal-delay="1">Alejandro Mella</h1>
+                    <p class="hero__subtitulo" data-reveal data-reveal-delay="2">
+                        <span class="hero__rotativo" data-hero-rotativo aria-live="off"></span><span class="hero__cursor" aria-hidden="true"></span>
+                    </p>
+                    <p class="hero__descripcion" data-reveal data-reveal-delay="3" data-hero-descripcion></p>
+                    <div class="hero__acciones" data-reveal data-reveal-delay="4">
+                        <a href="#proyectos" class="hero__btn hero__btn--primario">
+                            <span data-hero-btn-proyectos>Ver proyectos</span>
+                            <i class="fas fa-arrow-down" aria-hidden="true"></i>
+                        </a>
+                        <a href="assets/CV-Alejandro Mella.pdf" target="_blank" rel="noopener" class="hero__btn hero__btn--secundario">
+                            <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                            <span data-hero-btn-cv>Ver CV</span>
+                        </a>
+                        <a href="https://github.com/Alemella" target="_blank" rel="noopener" class="hero__icono" aria-label="GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero__visual" data-reveal data-reveal-delay="2">
+                    <span class="hero__anillo hero__anillo--1" aria-hidden="true"></span>
+                    <span class="hero__anillo hero__anillo--2" aria-hidden="true"></span>
+                    <img src="assets/profile.png" alt="Foto de Alejandro Mella" class="hero__foto" loading="eager">
+                </div>
+            </div>
+            <a href="#sobre-mi" class="hero__scroll" data-hero-scroll aria-label="Bajar a la sección Sobre mí">
+                <span class="hero__scroll-linea"></span>
+            </a>
+        </section>
 
 <!-- Sobre mí + Tecnologías -->
 <section class="sobre-tech">
-    <article class="sobre-tech__about" id="sobre-mi">
+    <article class="sobre-tech__about" id="sobre-mi" data-reveal>
         <h2>Sobre mí</h2>
         <p>
             Me he desempeñado en el desarrollo de sistemas de gestión de compras, ventas y operaciones para servitecas y talleres.
@@ -128,10 +153,10 @@
         </div>
     </article>
 
-    <article class="sobre-tech__stack" id="tecnologias">
+    <article class="sobre-tech__stack" id="tecnologias" data-reveal data-reveal-delay="1">
         <h2>Tecnologías</h2>
 
-        <div class="tech-categoria">
+        <div class="tech-categoria" data-reveal data-reveal-delay="1">
             <h3 class="tech-categoria__titulo">Frontend</h3>
             <div class="tech-chips">
                 <span class="tech-chip"><img src="assets/HTML.png" alt="" loading="lazy"><span>HTML5</span></span>
@@ -142,7 +167,7 @@
             </div>
         </div>
 
-        <div class="tech-categoria">
+        <div class="tech-categoria" data-reveal data-reveal-delay="2">
             <h3 class="tech-categoria__titulo">Backend</h3>
             <div class="tech-chips">
                 <span class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="" loading="lazy"><span>Java</span></span>
@@ -152,7 +177,7 @@
             </div>
         </div>
 
-        <div class="tech-categoria">
+        <div class="tech-categoria" data-reveal data-reveal-delay="3">
             <h3 class="tech-categoria__titulo">Bases de datos</h3>
             <div class="tech-chips">
                 <span class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="" loading="lazy"><span>PostgreSQL</span></span>
@@ -160,7 +185,7 @@
             </div>
         </div>
 
-        <div class="tech-categoria">
+        <div class="tech-categoria" data-reveal data-reveal-delay="4">
             <h3 class="tech-categoria__titulo">Mobile</h3>
             <div class="tech-chips">
                 <span class="tech-chip"><img src="assets/kotlin_android.png" alt="" loading="lazy"><span>Kotlin</span></span>
@@ -221,19 +246,19 @@
 </section> -->
 
 <section class="aficiones" id="aficiones">
-    <h2>Intereses</h2>
+    <h2 data-reveal>Intereses</h2>
     <ul class="aficiones__lista">
-        <li>Diseño de interfaces</li>
-        <li>Resolución de problemas</li>
-        <li>Automatización de procesos</li>
-         <li>Optimización de sistemas</li>
+        <li data-reveal data-reveal-delay="1">Diseño de interfaces</li>
+        <li data-reveal data-reveal-delay="2">Resolución de problemas</li>
+        <li data-reveal data-reveal-delay="3">Automatización de procesos</li>
+        <li data-reveal data-reveal-delay="4">Optimización de sistemas</li>
     </ul>
 </section>
 
 <!-- Proyectos -->
 <section class="proyectos" id="proyectos">
-    <h2>Proyectos</h2>
-    <div class="proyectos__galeria">
+    <h2 data-reveal>Proyectos</h2>
+    <div class="proyectos__galeria" data-reveal data-reveal-delay="1">
         <button class="proyectos__btn proyectos__btn--prev" aria-label="Proyecto anterior">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
@@ -255,9 +280,9 @@
 
 <!-- Contacto -->
 <section class="contacto" id="contacto">
-    <h2>Contacto</h2>
-    <p class="contacto__intro">Si quieres hacer una consulta, proponer una colaboración o hablar sobre un proyecto, déjame tus datos y te responderé a la brevedad.</p>
-    <form class="contacto__formulario" action="https://formsubmit.co/alejandros.mella5@gmail.com" method="POST" data-contact-form>
+    <h2 data-reveal>Contacto</h2>
+    <p class="contacto__intro" data-reveal data-reveal-delay="1">Si quieres hacer una consulta, proponer una colaboración o hablar sobre un proyecto, déjame tus datos y te responderé a la brevedad.</p>
+    <form class="contacto__formulario" action="https://formsubmit.co/alejandros.mella5@gmail.com" method="POST" data-contact-form data-reveal data-reveal-delay="2">
         <input type="hidden" name="_subject" value="Nuevo mensaje desde tu portafolio">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
@@ -284,6 +309,9 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <div class="cursor-glow" data-cursor-glow aria-hidden="true"></div>
+
     <script src="script.js" defer></script>
+    <script src="enhancements.js" defer></script>
 </body>
 </html>
